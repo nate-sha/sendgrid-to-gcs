@@ -28,9 +28,11 @@ E --> F(BigQuery)
 - Google Cloud SDK `gcloud`
 
 ### Installation
-```git clone https://github.com/nate-sha/sendgrid-to-gcs```
+
 1.  Clone the repository:
-   
+   ```
+   git clone https://github.com/nate-sha/sendgrid-to-gcs
+   ```
 2.  Create a virtual environment:
     ```python -m venv env```
 3.  Activate the virtual environment
