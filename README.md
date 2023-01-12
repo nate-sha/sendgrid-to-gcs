@@ -1,65 +1,63 @@
-# POST to GCP Storage
+# SendGrid to Google Cloud Storage
 
-A short description of my Django app goes here.
+## Introduction
+
+This `flask` application container parses email attachments sent as a POST request by `SendGrid Inbound Parse`and saves them to a `Google Storage Bucket`
+
+> This app can be deployed as a part of your pipeline where it triggers another data wrangling, forecasting microservice
 
 ```mermaid
 graph LR
-A[HTTP POST] --> B(CLOUD RUN)
-B --> C(Google Cloud Storage)
-
+A[Email] --> B(SendGrid Inboud Parse)
+B --> C(POST Request)
+C --> D(Flask)
+D --> E(GCP)
+E --> F(BigQuery)
 ```
 
-## Deploy to the Cloud
+## Deploy to Google Cloud
 
 [![Deploy on Cloud Run](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/nate-sha/sendgrid-to-gcs.git)
 
-## Cloud Deployemnt
+## Run Locally
 
-### Create a 'stroge bucket`
+### Prerequisites
 
-### Create a `cloud run service`
+- Python 3.8+
+- Docker
+- Google Cloud SDK `gcloud`
 
-#### Select `Continuously deploy new revisions from a source repository`
+### Installation
 
-#### Deploy
+1.  Clone the repository:
+    `git clone https://github.com/nate-sha/sendgrid-to-gcs`
+2.  Create a virtual environment:
+    `python -m venv env`
+3.  Activate the virtual environment
+    #### Mac OS/Linux
+    `source env/bin/activate`
+    #### Windows
+    source env/Scripts/activate
+4.  Install Dependencies
+    `pip install -r requirements.txt`
 
-## Running Locally
+### Configuration
 
-### create and activate the `virtual env`
+To run the application in development mode, you must set some environment variables and run the Flask development server.
 
-```
-python3 -m venv env
-```
+##### Set the environment variables
 
-### Activate the `enviroment`
+`export DEBUG=True`
+`export BUCKET_NAME=your-bucket-name`
 
-#### Linux/MacOS
+#### Add the `service account` JSON key to the root of the project
 
-```
-source env/bin/activate
-```
+## Use Case
 
-#### Windows
+> TODO: Complete this section and add a diagram
 
-```
-source env/Scripts/activate
-```
+Your department has multiple contracted agencies that can generate reports such as sales, activity, etc. But the only delivery method offered is by email. They send a daily/weekly report as an attachment via email.
 
-### update `pip` and install dependencies
+This module takes those emails, parses the attachment, and saves them to `google cloud storage`
 
-    pip install -r requirements.txt
-
-## Running the application
-
-To run the application in development mode, you must set some environment variables and then run the Django development server.
-
-##### A. Set the environment variables
-
-`export DJANGO_DEBUG=True`
-`export DJANGO_SECRET_KEY=your-secret-key`
-
-### Run main.py
-
-```
-python3 main.py
-```
+This trigger a ML microservice and saves the result into firestore/MongoDB that can be used in your front end
