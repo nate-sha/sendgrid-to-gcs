@@ -34,14 +34,22 @@ E --> F(BigQuery)
    git clone https://github.com/nate-sha/sendgrid-to-gcs
    ```
 2.  Create a virtual environment:
-    ```python -m venv env```
+    ```
+    python -m venv env
+    ```
 3.  Activate the virtual environment
     #### Mac OS/Linux
-    ```source env/bin/activate```
+    ```
+    source env/bin/activate
+    ```
     #### Windows
-    ```source env/Scripts/activate```
+    ```
+    source env/Scripts/activate
+    ```
 4.  Install Dependencies
-    ```pip install -r requirements.txt```
+    ```
+    pip install -r requirements.txt
+    ```
 
 ### Configuration
 
@@ -49,8 +57,12 @@ To run the application in development mode, you must set some environment variab
 
 ##### Set the environment variables
 
-```export DEBUG=True```
-```export BUCKET_NAME=your-bucket-name```
+```
+export DEBUG=True
+```
+```
+export BUCKET_NAME=your-bucket-name
+```
 
 #### Add the `service account` JSON key to the root of the project
 
