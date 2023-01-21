@@ -30,9 +30,9 @@ E --> F(BigQuery)
 ### Installation
 
 1.  Clone the repository:
-   ```
-   git clone https://github.com/nate-sha/sendgrid-to-gcs
-   ```
+    ```
+    git clone https://github.com/nate-sha/sendgrid-to-gcs
+    ```
 2.  Create a virtual environment:
     ```
     python -m venv env
@@ -60,6 +60,7 @@ To run the application in development mode, you must set some environment variab
 ```
 export DEBUG=True
 ```
+
 ```
 export BUCKET_NAME=your-bucket-name
 ```
