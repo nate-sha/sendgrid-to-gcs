@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 
 # Google Cloud Storage
 from google.cloud import storage
-from google.oauth2 import service_account
+# from google.oauth2 import service_account
 
 # JSON Parser
 from json import loads
@@ -20,22 +20,24 @@ logging.basicConfig(level=logging.INFO)
 # Initialize the Flask application
 app = Flask(__name__)
 
+# For local development
 # Authenticate to Google Cloud Storage using the service account key and initialize the client
 # Specify the path to the service account JSON key file
-service_account_key_path = './portfolio-f4237-c261b5c29c2a.json'
-credentials = service_account.Credentials.from_service_account_file(
-    service_account_key_path
-)
-storage_client = storage.Client(credentials=credentials)
+# service_account_key_path = './portfolio-f4237-c261b5c29c2a.json'
+# credentials = service_account.Credentials.from_service_account_file(
+#     service_account_key_path
+# )
+# storage_client = storage.Client(credentials=credentials)
 
+storage_client = storage.Client()
 
 # Get the environment variables
 BUCKET_NAME = os.environ.get('BUCKET_NAME', 'BUCKET_NAME')
 ALLOWED_EXTENSIONS = ['csv', 'xlsx']
 ALLOWED_SENDERS = set([
-    os.environ.get('ALLOWED_SENDER_1', 'sender1@vendor-domain.com'),
-    os.environ.get('ALLOWED_SENDER_2', 'sender2@endor-domain.com'),
-    os.environ.get('ALLOWED_SENDER_3', 'sender3@endor-domain.com'), ])
+    os.environ.get('ALLOWED_SENDER_1', 'sender1@domain1.com'),
+    os.environ.get('ALLOWED_SENDER_2', 'sender2@domain2.com'),
+    os.environ.get('ALLOWED_SENDER_3', 'sender3@domain2com'), ])
 DEBUG = os.environ.get('DEBUG', True)
 PORT = os.environ.get('PORT', 8080)
 
